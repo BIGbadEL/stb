@@ -5,8 +5,13 @@ project(stb)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(DEBUG_COMPILE_FLAGS -fsanitize=leak -g)
-set(RELEASE_COMPILE_FLAGS -Ofast)
+
+if(LINUX_BUILD)
+    set(DEBUG_COMPILE_FLAGS -fsanitize=leak -g)
+    set(RELEASE_COMPILE_FLAGS -Ofast)
+elseif (WINDOWS_BUILD)
+#TODO: opt and warning flags
+endif()
 
 add_definitions(-DSTB_IMAGE_IMPLEMENTATION)
 
